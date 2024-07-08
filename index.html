@@ -4,9 +4,61 @@
 <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+                button {
+                        background-color: #EA4C89;
+                        border-radius: 8px;
+                        border-style: none;
+                        box-sizing: border-box;
+                        color: #FFFFFF;
+                        cursor: pointer;
+                        display: inline-block;
+                        font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+                        font-size: 14px;
+                        font-weight: 500;
+                        height: 40px;
+                        line-height: 20px;
+                        list-style: none;
+                        margin: 0;
+                        outline: none;
+                        padding: 10px 16px;
+                        position: relative;
+                        text-align: center;
+                        text-decoration: none;
+                        transition: color 100ms;
+                        vertical-align: baseline;
+                        user-select: none;
+                        -webkit-user-select: none;
+                        touch-action: manipulation;
+                }
 
-       
+                .button-1:hover,
+                .button-1:focus {
+                        background-color: #F082AC;
+                }
+
+                ul {
+                        margin: 0;
+                        gap: 0.01rem;
+                        padding: 0;
+                        display: flex;
+                        list-style: none;
+                        place-items: center;
+                        flex-direction: column;
+                        counter-reset: my-counter;
+                }
+
+                li {
+                        width: 10rem;
+                        text-align: center;
+                        font-size: 1.1em;
+                        border-radius: 3rem;
+                        padding: 0.2rem 0.9rem 0.9rem 0.9rem;
+                }
+        </style>
         <title>Abrsm Grade 3 scales practice</title>
+
+
 </head>
 
 <body>
@@ -18,43 +70,44 @@
 
 
         <script>
-                const starting_scales = ["Bb major hands together", "Eb major hands together", "B minor hands together", "C minor hands together", "B major r hand", "B major l hand", "F# major r hand", "F# major l hand", "Ab major r hand", "Ab major l hand", "F# minor r hand", "F# minor l hand", "F minor r hand", "F minor l hand","Eb major contrary 2oct","C minor contrary 2oct","chromatic scale starting on f#"];
+                const starting_scales = ["Bb major hands together", "Eb major hands together", "B minor hands together", "C minor hands together", "B major r hand", "B major l hand", "F# major r hand", "F# major l hand", "Ab major r hand", "Ab major l hand", "F# minor r hand", "F# minor l hand", "F minor r hand", "F minor l hand", "Eb major contrary 2oct", "C minor contrary 2oct", "chromatic scale starting on f#"];
                 let scales = [...starting_scales]
                 const scales_ul = document.getElementById("scales");
-                
+
                 const rnd_button = document.getElementById("random");
                 const reset_button = document.getElementById("reset");
                 const output = document.getElementById("output");
-                const update_list = () =>  {
+                const update_list = () => {
                         scales_ul.innerHTML = "";
-                        scales.forEach(add_to_list)};
+                        scales.forEach(add_to_list)
+                };
 
                 function getRandomElement(array) {
                         const randomIndex = Math.floor(Math.random() * array.length);
                         const randomElement = array[randomIndex];
-                        
+
                         return array.pop(random);
                 }
 
-                function add_to_list(text){
-                        
+                function add_to_list(text) {
+
                         e = document.createElement("li");
                         e.innerText = text;
                         scales_ul.appendChild(e);
                 };
 
-               update_list();
+                update_list();
 
-                function random(){
+                function random() {
                         random_scale = getRandomElement(scales);
                         console.log(random_scale)
                         update_list();
                         output.innerText = `Output: ${random_scale}`;
-                        
+
                 }
 
-                rnd_button.addEventListener("click",random);
-                reset_button.addEventListener("click",()=>{
+                rnd_button.addEventListener("click", random);
+                reset_button.addEventListener("click", () => {
                         scales = [...starting_scales]
                         update_list();
                         output.innerText = `Output: `;
