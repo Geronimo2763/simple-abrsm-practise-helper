@@ -13,6 +13,7 @@
                         color: #FFFFFF;
                         cursor: pointer;
                         display: inline-block;
+                        font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
                         font-size: 14px;
                         font-weight: 500;
                         height: 40px;
@@ -31,6 +32,10 @@
                         touch-action: manipulation;
                 }
 
+                .button-1:hover,
+                .button-1:focus {
+                        background-color: #F082AC;
+                }
 
                 ul {
                         margin: 0;
@@ -65,6 +70,12 @@
 
 
         <script>
+                Array.prototype.remove = function (index) {
+                        if (index > -1) {
+                                this.splice(index, 1);
+                        }
+                };
+
                 const starting_scales = ["Bb major hands together", "Eb major hands together", "B minor hands together", "C minor hands together", "B major r hand", "B major l hand", "F# major r hand", "F# major l hand", "Ab major r hand", "Ab major l hand", "F# minor r hand", "F# minor l hand", "F minor r hand", "F minor l hand", "Eb major contrary 2oct", "C minor contrary 2oct", "chromatic scale starting on f#"];
                 let scales = [...starting_scales]
                 const scales_ul = document.getElementById("scales");
@@ -81,7 +92,9 @@
                         const randomIndex = Math.floor(Math.random() * array.length);
                         const randomElement = array[randomIndex];
 
-                        return array.pop(random);
+                        array.remove(randomIndex); // Removes the element at randomIndex
+
+                        return randomElement;
                 }
 
                 function add_to_list(text) {
